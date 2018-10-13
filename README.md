@@ -4,7 +4,7 @@
 
 ```javascript
 curl -X POST -H "Content-Type: application/json" -d '{
- "nodes": ["127.0.0.1:5001"] 
+"nodes": ["127.0.0.1:5001"] 
 }' "http://localhost:5000/nodes/register"
 ```
 
@@ -12,9 +12,9 @@ curl -X POST -H "Content-Type: application/json" -d '{
 
 ```javascript
 curl -X POST -H "Content-Type: application/json" -d '{
- "sender": "sender-address",
- "recipient": "receivers-address",
- "amount": 5
+"sender": "sender-address",
+"recipient": "receivers-address",
+"amount": 5
 }' "http://localhost:5000/transactions/new"
 ```
 
@@ -28,3 +28,8 @@ http://localhost:5000/mine
 ```javascript
 http://localhost:5000/chain
 ```
+
+### What's comming next:
+
+-   File saperation.
+-   cron based resolution of the chain
