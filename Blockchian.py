@@ -105,9 +105,8 @@ class Blockchain(object):
         :param address: <str> Address of node. Eg. 'http://192.168.0.5:5000'
         :return: None
         """
-
         parsed_url = urlparse(address)
-        self.nodes.add(parsed_url.netloc)
+        self.nodes.add(parsed_url.path)
 
     def valid_chain(self, chain):
         """
@@ -238,9 +237,6 @@ def full_chain():
     }
     return jsonify(response), 200
 
-if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=5000)
-
 @app.route('/nodes/register', methods=['POST'])
 def register_nodes():
     values = request.get_json()
@@ -248,7 +244,6 @@ def register_nodes():
     nodes = values.get('nodes')
     if nodes is None:
         return "Error: Please supply a valid list of nodes", 400
-
     for node in nodes:
         blockchain.register_node(node)
 
@@ -257,7 +252,6 @@ def register_nodes():
         'total_nodes': list(blockchain.nodes),
     }
     return jsonify(response), 201
-
 
 @app.route('/nodes/resolve', methods=['GET'])
 def consensus():
@@ -275,3 +269,8 @@ def consensus():
         }
 
     return jsonify(response), 200
+
+
+if __name__ == '__main__':
+    app.run(host='127.0.0.1', port=5000)
+
